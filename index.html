@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Warner - Data Analytics Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+        }
+        
+        .contact-links {
+            margin-top: 20px;
+        }
+        
+        .contact-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 10px 20px;
+            border: 2px solid white;
+            border-radius: 25px;
+            display: inline-block;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .contact-links a:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+        
+        .content {
+            padding: 60px 40px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        h2 {
+            color: #667eea;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            color: #764ba2;
+            font-size: 1.6em;
+            margin: 30px 0 15px 0;
+        }
+        
+        .project-meta {
+            background: #f8f9ff;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #667eea;
+        }
+        
+        .project-meta strong {
+            color: #667eea;
+            display: inline-block;
+            min-width: 120px;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .skill-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .findings {
+            background: #fff;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .finding-item {
+            margin: 25px 0;
+            padding: 20px;
+            background: #f8f9ff;
+            border-radius: 8px;
+            border-left: 4px solid #764ba2;
+        }
+        
+        .finding-item h4 {
+            color: #764ba2;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .stat-box .number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .stat-box .label {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+        
+        .code-sample {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 25px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 25px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+        
+        .code-sample .keyword {
+            color: #ff79c6;
+        }
+        
+        .code-sample .function {
+            color: #50fa7b;
+        }
+        
+        .code-sample .string {
+            color: #f1fa8c;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            margin: 10px 10px 10px 0;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        
+        footer {
+            background: #2d2d2d;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>John Warner</h1>
+            <p>Data Analyst | SQL Developer | Business Intelligence</p>
+            <div class="contact-links">
+                <a href="mailto:jw48153@gmail.com">Email</a>
+                <a href="https://www.linkedin.com/in/jw48153" target="_blank">LinkedIn</a>
+            </div>
+        </header>
+        
+        <div class="content">
+            <section class="section">
+                <h2>🚴 Cyclistic Bike-Share Analysis</h2>
+                <p style="font-size: 1.2em; color: #555; margin: 20px 0;">
+                    A comprehensive data analysis project examining behavioral differences between annual members 
+                    and casual riders to develop targeted marketing strategies for membership conversion.
+                </p>
+                
+                <div class="project-meta">
+                    <p><strong>Duration:</strong> December 2025</p>
+                    <p><strong>Dataset:</strong> 365,069 bike trips (Q1 2019)</p>
+                    <p><strong>Tools:</strong> Google BigQuery, SQL, Google Sheets, Data Visualization</p>
+                    <p><strong>Role:</strong> Data Analyst</p>
+                </div>
+                
+                <div>
+                    <a href="https://docs.google.com/spreadsheets/d/10L-rLApsplBTMyYhuT7HVqjPE2edlXAYuYhu2xksddo/edit?usp=sharing" class="btn">📄 View Full Report</a>
+                    <a href="https://docs.google.com/spreadsheets/d/1_C2u-3OYLJSP0blaOX5_ukhb9O3jK1HL5ddPSePCOjE/edit?usp=sharing" class="btn">📊 View Visualizations</a>
+                </div>
+            </section>
+            
+            <section class="section">
+                <h2>💼 Business Challenge</h2>
+                <p style="font-size: 1.1em; line-height: 1.8;">
+                    Cyclistic's finance team identified that annual members are significantly more profitable 
+                    than casual riders. The marketing director needed data-driven insights to design strategies 
+                    that convert casual riders into annual members. My task was to analyze historical trip data 
+                    to understand how these two customer segments use the bike-share service differently.
+                </p>
+            </section>
+            
+            <section class="section">
+                <h2>🛠️ Technical Skills Demonstrated</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">SQL Query Writing</div>
+                    <div class="skill-card">Data Cleaning</div>
+                    <div class="skill-card">Google BigQuery</div>
+                    <div class="skill-card">Data Visualization</div>
+                    <div class="skill-card">Statistical Analysis</div>
+                    <div class="skill-card">Business Intelligence</div>
+                    <div class="skill-card">Google Sheets</div>
+                    <div class="skill-card">Strategic Thinking</div>
+                </div>
+            </section>
+            
+            <section class="section">
+                <h2>📊 Key Metrics</h2>
+                <div class="stats">
+                    <div class="stat-box">
+                        <span class="number">365K</span>
+                        <span class="label">Total Trips Analyzed</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="number">15x</span>
+                        <span class="label">More Rides by Members</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="number">3x</span>
+                        <span class="label">Longer Casual Rides</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="number">93.7%</span>
+                        <span class="label">Member Trip Share</span>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section">
+                <h2>🔍 Key Findings</h2>
+                <div class="findings">
+                    <div class="finding-item">
+                        <h4>Finding #1: Frequency Disparity</h4>
+                        <p>
+                            Annual members took <strong>341,906 rides</strong> compared to just <strong>23,163 rides</strong> 
+                            by casual riders—a 15x difference. This demonstrates that members rely on the service as 
+                            their primary transportation mode, while casual riders use it sporadically.
+                        </p>
+                    </div>
+                    
+                    <div class="finding-item">
+                        <h4>Finding #2: Duration Patterns</h4>
+                        <p>
+                            Casual riders averaged <strong>35.28 minutes</strong> per trip versus <strong>11.31 minutes</strong> 
+                            for members. The 3x longer duration indicates leisure-oriented usage (sightseeing, recreation) 
+                            versus utility-focused trips (commuting, errands).
+                        </p>
+                    </div>
+                    
+                    <div class="finding-item">
+                        <h4>Finding #3: Weekly Usage Patterns</h4>
+                        <p>
+                            Members peaked on <strong>weekdays (Thursday)</strong> with consistent usage Monday-Friday, 
+                            while casual riders peaked on <strong>weekends (Saturday)</strong>. This confirms members 
+                            are commuters while casual riders are leisure users and tourists.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section">
+                <h2>💻 SQL Code Sample</h2>
+                <p style="margin-bottom: 15px;">Example query analyzing ride patterns by user type and day:</p>
+                <div class="code-sample">
+<span class="keyword">SELECT</span> 
+  day_name,
+  usertype,
+  <span class="function">COUNT</span>(*) <span class="keyword">AS</span> total_rides,
+  <span class="function">ROUND</span>(<span class="function">AVG</span>(ride_length_min), <span class="string">2</span>) <span class="keyword">AS</span> avg_ride_minutes
+<span class="keyword">FROM</span> <span class="string">`cyclistic-analysis.bike_data.trips_2019_q1`</span>
+<span class="keyword">WHERE</span> ride_length_min > <span class="string">1</span> 
+  <span class="keyword">AND</span> ride_length_min <= <span class="string">1440</span>
+<span class="keyword">GROUP BY</span> day_name, usertype
+<span class="keyword">ORDER BY</span> 
+  <span class="keyword">CASE</span> day_name
+    <span class="keyword">WHEN</span> <span class="string">'Sunday'</span> <span class="keyword">THEN</span> <span class="string">1</span>
+    <span class="keyword">WHEN</span> <span class="string">'Monday'</span> <span class="keyword">THEN</span> <span class="string">2</span>
+    <span class="keyword">WHEN</span> <span class="string">'Tuesday'</span> <span class="keyword">THEN</span> <span class="string">3</span>
+    <span class="keyword">WHEN</span> <span class="string">'Wednesday'</span> <span class="keyword">THEN</span> <span class="string">4</span>
+    <span class="keyword">WHEN</span> <span class="string">'Thursday'</span> <span class="keyword">THEN</span> <span class="string">5</span>
+    <span class="keyword">WHEN</span> <span class="string">'Friday'</span> <span class="keyword">THEN</span> <span class="string">6</span>
+    <span class="keyword">WHEN</span> <span class="string">'Saturday'</span> <span class="keyword">THEN</span> <span class="string">7</span>
+  <span class="keyword">END</span>;
+                </div>
+            </section>
+            
+            <section class="section">
+                <h2>💡 Strategic Recommendations</h2>
+                <div class="findings">
+                    <div class="finding-item">
+                        <h4>1. Weekend Membership Promotions</h4>
+                        <p>
+                            Launch targeted marketing campaigns on Saturdays when casual riders are most active. 
+                            Offer time-limited membership discounts and demonstrate ROI through cost comparison tools.
+                        </p>
+                    </div>
+                    
+                    <div class="finding-item">
+                        <h4>2. Reposition for Short-Trip Commuting</h4>
+                        <p>
+                            Shift messaging from "leisure service" to "practical transportation." Showcase member 
+                            testimonials highlighting time and cost savings for daily commutes.
+                        </p>
+                    </div>
+                    
+                    <div class="finding-item">
+                        <h4>3. Implement Trial Membership Pass</h4>
+                        <p>
+                            Create a 10-ride or 30-day trial pass as a stepping stone between single rides and 
+                            annual membership, reducing conversion friction and building customer confidence.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section">
+                <h2>📈 Expected Business Impact</h2>
+                <p style="font-size: 1.1em; line-height: 1.8;">
+                    Converting just <strong>10% of casual riders (2,316 customers)</strong> to annual memberships 
+                    would significantly increase revenue and customer lifetime value. Given that annual members are 
+                    substantially more profitable than per-ride customers, this conversion strategy directly supports 
+                    the company's growth objectives.
+                </p>
+            </section>
+            
+            <section class="section">
+                <h2>🎓 Methodology</h2>
+                <h3>Data Preparation</h3>
+                <p>Cleaned 365,069 records by removing invalid trips (rides under 1 minute or over 24 hours), 
+                   resulting in 364,877 valid trips for analysis.</p>
+                
+                <h3>Analysis Approach</h3>
+                <p>Used SQL in Google BigQuery to perform aggregations, calculate statistics, and identify 
+                   patterns across user types and temporal dimensions.</p>
+                
+                <h3>Visualization</h3>
+                <p>Created compelling charts in Google Sheets to illustrate behavioral differences and support 
+                   data-driven storytelling.</p>
+                
+                <h3>Strategic Synthesis</h3>
+                <p>Translated analytical findings into actionable business recommendations aligned with company 
+                   profitability goals.</p>
+            </section>
+        </div>
+        
+        <footer>
+            <p>&copy; 2025 John Warner | Data Analytics Portfolio</p>
+            <p style="margin-top: 10px; opacity: 0.8;">Built with HTML/CSS | Deployed on GitHub Pages</p>
+        </footer>
+    </div>
+</body>
+</html>
