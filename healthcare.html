@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Insurance Marketplace Analysis | John Warner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .nav {
+            background: #2d2d2d;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: #3b82f6;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+            background: white;
+            margin-top: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #3b82f6;
+            font-size: 2.2em;
+            margin: 40px 0 20px 0;
+            border-bottom: 3px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #1e40af;
+            font-size: 1.6em;
+            margin: 30px 0 15px 0;
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        .finding-box {
+            background: #eff6ff;
+            border-left: 5px solid #3b82f6;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .finding-box h4 {
+            color: #3b82f6;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .finding-box ul {
+            margin-left: 20px;
+            line-height: 2;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .comparison-card {
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .comparison-card.expansion {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+
+        .comparison-card.non-expansion {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+        }
+
+        .comparison-card h4 {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            padding-bottom: 10px;
+        }
+
+        .comparison-card .metric {
+            margin: 12px 0;
+            padding: 8px 0;
+        }
+
+        .comparison-card .metric-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .comparison-card .metric-value {
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+
+        .tools-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .tool-badge {
+            background: #3b82f6;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            margin: 10px 10px 10px 0;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+        }
+
+        .methodology {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-left: 5px solid #3b82f6;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        footer {
+            background: #2d2d2d;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .nav-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="index.html">← Back to Portfolio</a>
+            <div>
+                <a href="mailto:jw48153@gmail.com">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header">
+        <h1>🏥 Health Insurance Marketplace Analysis</h1>
+        <p>Impact of the Affordable Care Act on Coverage Rates (2010-2015)</p>
+    </div>
+
+    <div class="container">
+        <section>
+            <h2>📊 Project Overview</h2>
+            <p style="font-size: 1.1em; line-height: 1.8; margin: 20px 0;">
+                This comprehensive policy analysis evaluated state-level health insurance coverage data 
+                to assess the Affordable Care Act's effectiveness in reducing uninsured rates. By comparing 
+                32 Medicaid expansion states against 19 non-expansion states, this project quantifies the 
+                direct impact of state policy decisions on healthcare access and coverage equity.
+            </p>
+
+            <div class="overview-grid">
+                <div class="stat-box">
+                    <span class="stat-number">52</span>
+                    <span class="stat-label">States Analyzed</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">6 Years</span>
+                    <span class="stat-label">Data Coverage</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">20%</span>
+                    <span class="stat-label">Better Expansion Results</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">3x</span>
+                    <span class="stat-label">Medicaid Enrollment Gap</span>
+                </div>
+            </div>
+
+            <div class="tools-list">
+                <span class="tool-badge">SQL</span>
+                <span class="tool-badge">Google BigQuery</span>
+                <span class="tool-badge">Google Sheets</span>
+                <span class="tool-badge">Policy Analysis</span>
+                <span class="tool-badge">Healthcare Data</span>
+                <span class="tool-badge">Geographic Analysis</span>
+            </div>
+        </section>
+
+        <section>
+            <h2>🔍 Key Findings</h2>
+            
+            <div class="finding-box">
+                <h4>Finding #1: Medicaid Expansion States Achieved Superior Outcomes</h4>
+                <p><strong>States that expanded Medicaid saw 20% better coverage improvement.</strong></p>
+                
+                <div class="comparison-grid" style="margin-top: 20px;">
+                    <div class="comparison-card expansion">
+                        <h4>✅ Expansion States (32)</h4>
+                        <div class="metric">
+                            <div class="metric-label">2010 Uninsured Rate</div>
+                            <div class="metric-value">13%</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-label">2015 Uninsured Rate</div>
+                            <div class="metric-value">7%</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-label">Improvement</div>
+                            <div class="metric-value">6%</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-label">Avg Medicaid Growth</div>
+                            <div class="metric-value">435,681</div>
+                        </div>
+                    </div>
+
+                    <div class="comparison-card non-expansion">
+                        <h4>⚠️ Non-Expansion States (19)</h4>
+                        <div class="metric">
+                            <div class="metric-label">2010 Uninsured Rate</div>
+                            <div class="metric-value">16%</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-label">2015 Uninsured Rate</div>
+                            <div class="metric-value">11%</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-label">Improvement</div>
+                            <div class="metric-value">5%</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-label">Avg Medicaid Growth</div>
+                            <div class="metric-value">144,448</div>
+                        </div>
+                    </div>
+                </div>
+
+                <p style="margin-top: 15px;"><em>Insight:</em> Expansion states enrolled 3x more people in Medicaid 
+                and achieved lower final uninsured rates, demonstrating clear policy effectiveness.</p>
+            </div>
+
+            <div class="finding-box">
+                <h4>Finding #2: Non-Expansion States Relied More on Marketplace Coverage</h4>
+                <p><strong>Without Medicaid expansion, states needed 89% more marketplace enrollment with higher subsidies.</strong></p>
+                <ul>
+                    <li>Non-expansion marketplace enrollment: 308,589 per state</li>
+                    <li>Expansion marketplace enrollment: 163,067 per state (47% lower)</li>
+                    <li>Non-expansion avg subsidy: $306.26/month (7% higher)</li>
+                    <li>Despite higher marketplace usage, worse coverage achieved (11% vs 7% uninsured)</li>
+                </ul>
+                <p style="margin-top: 15px;"><em>Insight:</em> Marketplace subsidies alone cannot replace Medicaid 
+                expansion's effectiveness. Non-expansion states required more federal subsidy dollars to achieve 
+                inferior coverage outcomes.</p>
+            </div>
+
+            <div class="finding-box">
+                <h4>Finding #3: Geographic Variation Reveals Implementation Disparities</h4>
+                <p><strong>State-by-state analysis shows significant variation even within policy categories.</strong></p>
+                <ul>
+                    <li>Top performers achieved improvements exceeding national averages</li>
+                    <li>Bottom performers showed minimal gains despite ACA availability</li>
+                    <li>Implementation quality mattered as much as policy choice</li>
+                    <li>Geographic health equity gaps persisted in non-expansion regions</li>
+                </ul>
+                <p style="margin-top: 15px;"><em>Insight:</em> Federal policy success depends on state-level 
+                execution and political will, creating geographic disparities in healthcare access.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>💡 Policy Implications</h2>
+            
+            <h3>1. Medicaid Expansion Proves Superior Strategy</h3>
+            <p>Evidence supports expansion as the most effective coverage mechanism, achieving 20% better 
+            improvement while enrolling 3x more individuals at lower per-person costs than marketplace subsidies.</p>
+
+            <h3>2. Enhanced Marketplace Support Needed</h3>
+            <p>Non-expansion states required 89% more marketplace enrollment and higher subsidies, suggesting 
+            need for improved outreach and streamlined enrollment processes to maximize coverage.</p>
+
+            <h3>3. Address Geographic Health Equity</h3>
+            <p>Persistent state-to-state variation creates unequal healthcare access. Federal incentives for 
+            late-adopting states and coverage equity benchmarks could reduce geographic disparities.</p>
+
+            <div class="highlight-box">
+                <h3 style="color: #1e40af; margin-top: 0;">Expected Outcome</h3>
+                <p style="margin: 0; font-size: 1.05em;">
+                    If all non-expansion states adopted Medicaid expansion, national uninsured rates could 
+                    decrease an additional 4 percentage points, covering millions more Americans while reducing 
+                    federal subsidy costs through more efficient coverage mechanisms.
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <div class="methodology">
+                <h2>🔧 Methodology</h2>
+                
+                <h3>Data Analysis</h3>
+                <p>Utilized Google BigQuery for SQL-based state-level analysis, employing aggregation functions, 
+                GROUP BY comparisons, and before/after statistical analysis across 52 geographic entities.</p>
+
+                <h3>Key Comparisons</h3>
+                <ul style="margin-left: 20px; line-height: 2;">
+                    <li>Temporal: 2010 (pre-ACA) vs 2015 (post-implementation)</li>
+                    <li>Policy: Expansion states vs non-expansion states</li>
+                    <li>Geographic: State-by-state performance analysis</li>
+                    <li>Coverage Type: Medicaid vs Marketplace effectiveness</li>
+                </ul>
+
+                <h3>Visualization Strategy</h3>
+                <p>Created comparative charts highlighting policy impact differences, using color coding 
+                (green = expansion, orange = non-expansion) for immediate visual understanding of outcomes.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>📄 Project Resources</h2>
+            <div style="margin: 20px 0;">
+                <a href="https://docs.google.com/spreadsheets/d/1uiYHvLPvb4WznKWLnCSvtx8H3F2wipYPpHDq085XFV0/edit?usp=sharing" class="btn" target="_blank">📊 View Full Report</a>
+                <a href="https://docs.google.com/spreadsheets/d/1SIaIgHwTePwzpahLceBZ88Zn66052yuelMtgdTagzwc/edit?usp=sharing" class="btn" target="_blank">📈 View Visualizations</a>
+                <a href="index.html" class="btn" style="background: #2d2d2d;">← Back to Portfolio</a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 John Warner | Data Analytics Portfolio</p>
+        <p style="margin-top: 10px; opacity: 0.8;">
+            <a href="index.html" style="color: #3b82f6; text-decoration: none;">Portfolio</a> | 
+            <a href="mailto:jw48153@gmail.com" style="color: #3b82f6; text-decoration: none;">Contact</a> | 
+            <a href="https://www.linkedin.com/in/jw48153" style="color: #3b82f6; text-decoration: none;" target="_blank">LinkedIn</a>
+        </p>
+    </footer>
+</body>
+</html>
